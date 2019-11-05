@@ -9,7 +9,7 @@ from osgeo import gdal
 
 def get_gaps(img):
     gaps = numpy.argwhere( numpy.isnan( img ) )
-    # print(gaps[0,:])
+    # print("get_gaps:{}".format(gaps[0,:]))
     return( gaps )
 
 def fillMarujo2019(img_targ, img_ref, img_seg1, img_seg2, img_seg3):
@@ -22,14 +22,38 @@ def fillMaxwell2007(img_targ, img_ref, img_seg1, img_seg2, img_seg3):
 
 def fillMaxwell2004(img_targ, gaps_targ, img_ref, gaps_ref, img_seg1):
     print("Fill Maxwell 2004")
-    # print(gaps_targ.shape)
-    # print(gaps_targ[1000,0])
-    segments = numpy.unique( img_seg1[ gaps_targ[:,0], gaps_targ[:,1] ] )
-    print( len( segments) )
-    print(segments)
+    print("gaps_targ.shape:{}".format(gaps_targ.shape))
+    print( img_targ[gaps_targ[0,0], gaps_targ[0,1]] )
+
+    indices = numpy.array( list( zip(gaps_targ[:,0], gaps_targ[:,1] ) ) )
+    ### Get segments which contains NA
+    segments = img_seg1[ indices[:,0], indices[:,1] ]
+    segments = numpy.unique( segments[~numpy.isnan( segments )] )
+    print( "len segs:{}".format( len( segments) ) )
     
+    #filter segs img ref
+    # for seg in segments:
+    seg = 1
+    if seg ==1:
+        print( "TEST bfr: {}".format(img_targ[0,81]) )
+        print( "Seg:{}".format(seg) )
+        ### Get seg pixel position
+        seg_pixels = numpy.nonzero( img_seg1 == seg )
+        seg_indices = numpy.array( list( zip(seg_pixels[:][0], seg_pixels[:][1] ) ) )
+        print("Seg indices: {}".format(seg_indices))
+        ### Get targ pix values
+        targ_values_seg = img_targ[ seg_indices[:,0], seg_indices[:,1] ]
+        ### Check if any is not nan
+        if( numpy.any( ~numpy.isnan(targ_values_seg) ) ):
+            print("There are no nan to use")
+            ### Get nan position and replace by mean value
+            nan_pos = numpy.isnan( targ_values_seg )
+            img_targ[ seg_indices[:,0], seg_indices[:,1] ][nan_pos] = numpy.nanmean(targ_values_seg)
+        print(seg_indices[:,0], seg_indices[:,1])
+        print( "TEST after: {}".format(img_targ[0,81]) )
     
 
+        
 
 def main():
     input_targ_filename = "/home/marujo/Marujo/EO_filling_py/input/images/L7/20150810_L7/20150810_sr_band4.tif"
@@ -65,7 +89,8 @@ def main():
                 # print(dataset.profile)
                 img_seg1 = dataset.read(1)
                 img_seg1[ img_seg1 < -100000 ] = numpy.nan
-                # print(img_seg1.shape)
+                print("img_seg1.shp:{}".format(img_seg1.shape) )
+                # print(img_seg1[0,0])
 
             fillMaxwell2004(img_targ, gaps_targ, img_ref, gaps_ref, img_seg1)
 
