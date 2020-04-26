@@ -1,7 +1,7 @@
 # EO_filling_py (BEING UPDATED AND OPTIMIZED)
 Python package to fill Remote Sensing data.
 
-R version can be found in: https://github.com/marujore/EO-filling-py
+R version can be found in: https://github.com/marujore/EO-filling
 
 
 # Citation
