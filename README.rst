@@ -1,10 +1,37 @@
-# EO_filling_py (BEING UPDATED AND OPTIMIZED)
+..
+    This file is part of eo-filling.py
+    Copyright (C) 2020 Rennan Marujo.
+
+    eo-filling.py is free software; you can redistribute it and/or modify it
+    under the terms of the MIT License; see LICENSE file for more details.
+
+
+=============
+eo-filling.py
+=============
+
+
+.. image:: https://img.shields.io/badge/license-MIT-green
+        :target: https://github.com/marujore/eo-filling.py/blob/master/LICENSE
+        :alt: Software License
+
+
+.. image:: https://img.shields.io/badge/lifecycle-experimental-orange.svg
+        :target: https://www.tidyverse.org/lifecycle/#experimental
+        :alt: Software Life Cycle
+
+
+About
+=====
+
+
 Python package to fill Remote Sensing data.
 
 R version can be found in: https://github.com/marujore/EO-filling
 
 
-# Citation
+Citation
+--------
 
 Marujo, R. F. B., Fonseca, L. M. G., Körting, T. S., & Bendini, H. N. (2020). A MULTI-SCALE SEGMENTATION APPROACH TO FILLING GAPS IN LANDSAT ETM+ SLC-OFF IMAGES THROUGH PIXEL WEIGHTING. ISPRS - International Archives of the Photogrammetry, Remote Sensing and Spatial Information Sciences, XLII-3/W11(23), 79–84. https://doi.org/10.5194/isprs-archives-XLII-3-W11-79-2020
 

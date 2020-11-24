@@ -1,0 +1,17 @@
+#
+# This file is part of eo-filling.py.
+# Copyright (C) 2020 Rennan Marujo.
+#
+# eo-filling.py is free software; you can redistribute it and/or modify it
+# under the terms of the MIT License; see LICENSE file for more details.
+#
+
+###### Requirements without Version Specifiers ######`
+numpy
+rasterio
+
+###### Requirements with Version Specifiers ######`
+# docopt == 0.6.1             # Version Matching. Must be version 0.6.1
+# keyring >= 4.1.1            # Minimum version 4.1.1
+# coverage != 3.5             # Version Exclusion. Anything except version 3.5
+# Mopidy-Dirble ~= 1.1        # Compatible release. Same as >= 1.1, == 1.*
