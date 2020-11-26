@@ -31,15 +31,15 @@ def main():
 
     # Search for no data
     gaps_target = eo_filling.get_gaps(img_target)
-    if len(gaps_target) <= 0:
-        logging.info('Nothing to fill')
-        return
-    else:
+    if numpy.any(gaps_target):
         logging.info('Filling')
         img_filled = eo_filling.fill_maxwell_2004(img_target, img_segmentation, gaps_target)
         logging.info(img_filled)
         img_filled = eo_filling.fill_marujo(img_target, img_reference, img_segmentation, gaps_target)
         logging.info(img_filled)
+    else:
+        logging.info('Nothing to fill')
+        return
 
 
 if __name__ == '__main__':
